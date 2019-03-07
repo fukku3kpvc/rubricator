@@ -1,13 +1,8 @@
-= form_for @node do |f|
+-#= simple_form_for(@node, html: { class: 'form-inline' }) do |f|
+= simple_form_for @node do |f|
   = f.hidden_field :parent_id
-  = f.label :title, 'Title'
-  %br
-  = f.text_field :title
-  %br
-  = f.label :description, 'Description'
-  %br
-  = f.text_area :description, rows: 8
-  %br
+  = f.input :title
+  = f.input :description, rows: 8
   = f.file_field :image
   %br
-  = f.submit 'Create Node'
+  = f.button :submit

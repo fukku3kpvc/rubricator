@@ -1,13 +1,17 @@
 module NodesHelper
-  def nested_nodes(nodes)
+  def nested_nodes(nodes, sub = false)
+    sub ? color = 'list-group-item list-group-item-secondary' : color = 'list-group-item list-group-item-primary'
     nodes.map do |node, sub_nodes|
-      puts "GO FOR NODE #{node.title}"
-      puts sub_nodes
       if !sub_nodes.empty?
-        render(node) + render(partial: 'nodes/sub_nodes', locals: { sub_nodes: sub_nodes })
-        # render(node) + content_tag(:div, nested_nodes(sub_nodes), class: 'nested-nodes')
+        content_tag(:div,
+                    render(partial: 'nodes/node', locals: { node: node, color: color }) +
+                        render(partial: 'nodes/sub_nodes',
+                               locals: { sub_nodes: sub_nodes, collapse_id: node.id }),
+                    class: 'node')
       else
-        render(node)
+        content_tag(:div, render(partial: 'nodes/node',
+                                 locals: { node: node, color: color }),
+                    class: 'node')
       end
     end.join.html_safe
   end

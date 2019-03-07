@@ -1,1 +1,4 @@
-= nested_nodes @nodes.arrange(order: :created_at)
+.list-group
+  - if user_signed_in?
+    = link_to 'Create New Node', new_node_path, class: 'btn btn-success', id: 'new-node-btn'
+  = nested_nodes @nodes.arrange(order: :created_at)

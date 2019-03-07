@@ -16,7 +16,7 @@ class NodesController < ApplicationController
   def create
     @node = Node.new(node_params)
     if @node.save
-      redirect_to root_path, notice: 'Saved node successfully'
+      redirect_to nodes_path, notice: 'Saved node successfully'
     else
       flash[:alert] = 'Error appeared while saving new node'
       render :new
@@ -27,7 +27,7 @@ class NodesController < ApplicationController
 
   def update
     if @node.update node_params
-      redirect_to node_path, notice: 'Update node successfully'
+      redirect_to nodes_path, notice: 'Update node successfully'
     else
       flash[:alert] = 'Error while updating node'
       render :edit
@@ -41,6 +41,7 @@ class NodesController < ApplicationController
     else
       flash[:alert] = 'Error while deleting node'
     end
+    redirect_to nodes_path
   end
 
   private

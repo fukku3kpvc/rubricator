@@ -1,5 +1,4 @@
-%button{"data-toggle"=>"collapse", "data-target"=>".multi-collapse", "aria-expanded"=>"false", "aria-controls"=>"SubNodes"}
-%div{class: "collapse multi-collapse", id: "SubNodes"}
-  - sub_nodes.each do |sub_node|
-    = nested_nodes sub_node
-  -#%div{class: "card card-body"}
+.list-group
+  %button{class:"btn btn-secondary", "data-toggle"=>"collapse", "data-target"=>"#collapse_id" + collapse_id.to_s, "aria-expanded"=>"false", "aria-controls"=>'#collapse_id'+collapse_id.to_s}Show child
+  %div{class: "collapse multi-collapse", id: 'collapse_id'+collapse_id.to_s}
+    = nested_nodes(sub_nodes, sub:true)

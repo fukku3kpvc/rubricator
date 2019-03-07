@@ -1,0 +1,9 @@
+.row
+  .col-md-8.align-self-center
+    .node-data
+      .row
+        %h1.col-lg #{@node.title}
+      .row
+        %h3.col-lg #{(@node.description?) ? @node.description : 'Description is empty'}
+  .col-md-4.align-self-center
+    = image_tag(@node.image.url(:large)) if @node.image?
