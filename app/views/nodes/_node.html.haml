@@ -1,13 +1,13 @@
 -#%div{class:"list-group-item list-group-item-action flex-column align-items-start"}
 -#= link_to node.title, node_path(node), class: 'list-group-item list-group-item-action flex-column align-items-start' do
 -#flex-column align-items-start
-%a{href: node_path(node), class: color}
-  %div{class: "d-flex w-100 justify-content-between"}
-    %h5.mb-1 #{node.title}
-    %small #{image_tag(node.image.url(:thumb)) if node.image?}
-  %p.mb-1 #{(node.description?) ? node.description : 'Description is empty'}
+%a{ href: node_path(node), class: color }
+  .d-flex.w-100.justify-content-between
+    %h5.mb-1 #{ node.title }
+    %small #{ image_tag(node.image.url(:thumb)) if node.image? }
+  %p.mb-1 #{ (node.description?) ? node.description : 'Description is empty' }
 - if user_signed_in?
-  .list-group-item#action-buttons
+  .list-group-item#action-btn
     = link_to 'Add Children', new_node_path(parent_id: node), class: 'btn btn-primary btn-sm'
     = link_to 'Edit', edit_node_path(node), class: 'btn btn-warning btn-sm'
     = link_to 'Delete', node_path(node), method: :delete, data: { confirm: 'Sure?' }, class: 'btn btn-danger btn-sm'

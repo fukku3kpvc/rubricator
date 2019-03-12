@@ -1,8 +1,10 @@
--#= simple_form_for(@node, html: { class: 'form-inline' }) do |f|
 = simple_form_for @node do |f|
   = f.hidden_field :parent_id
   = f.input :title
   = f.input :description, rows: 8
   = f.file_field :image
+
+  = yield(f) if block_given?
+
   %br
   = f.button :submit

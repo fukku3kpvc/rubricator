@@ -1,4 +1,4 @@
 .list-group
-  %button{class:"btn btn-secondary", "data-toggle"=>"collapse", "data-target"=>"#collapse_id" + collapse_id.to_s, "aria-expanded"=>"false", "aria-controls"=>'#collapse_id'+collapse_id.to_s}Show child
-  %div{class: "collapse multi-collapse", id: 'collapse_id'+collapse_id.to_s}
+  %button.btn.btn-secondary{ "data-toggle":"collapse", "data-target":"#collapse_id" + collapse_id.to_s, "aria-expanded":"false", "aria-controls":'#collapse_id' + collapse_id.to_s} Show child
+  %div.collapse.multi-collapse{ id: 'collapse_id' + collapse_id.to_s }
     = nested_nodes(sub_nodes, sub:true)

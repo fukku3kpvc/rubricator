@@ -1,1 +1,5 @@
-= render 'form'
+= render 'form' do |f|
+  - if @node.image?
+    %br
+    = f.label 'Remove image?'
+    = f.check_box :remove_image

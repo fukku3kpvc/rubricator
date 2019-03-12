@@ -10,15 +10,15 @@ class NodesController < ApplicationController
 
   def new
     @node = Node.new(parent_id: params[:parent_id])
-    @node.image = params[:file]
+    # @node.image = params[:file]
   end
 
   def create
     @node = Node.new(node_params)
     if @node.save
-      redirect_to nodes_path, notice: 'Saved node successfully'
+      redirect_to nodes_path, notice: 'A new node was successfully saved'
     else
-      flash[:alert] = 'Error appeared while saving new node'
+      flash[:alert] = 'An error occurred while saving new node'
       render :new
     end
   end
@@ -27,9 +27,9 @@ class NodesController < ApplicationController
 
   def update
     if @node.update node_params
-      redirect_to nodes_path, notice: 'Update node successfully'
+      redirect_to nodes_path, notice: 'The node was successfully updated'
     else
-      flash[:alert] = 'Error while updating node'
+      flash[:alert] = 'An error occurred while updating node'
       render :edit
     end
   end
@@ -37,9 +37,9 @@ class NodesController < ApplicationController
   def destroy
     @node.destroy
     if @node.destroyed?
-      flash[:notice] = 'Delete node successfully'
+      flash[:notice] = 'The node was successfully deleted'
     else
-      flash[:alert] = 'Error while deleting node'
+      flash[:alert] = 'An error occurred while deleting node'
     end
     redirect_to nodes_path
   end
@@ -47,7 +47,7 @@ class NodesController < ApplicationController
   private
 
   def node_params
-    params.require(:node).permit(:title, :description, :image, :parent_id)
+    params.require(:node).permit(:title, :description, :image, :parent_id, :remove_image)
   end
 
   def set_node

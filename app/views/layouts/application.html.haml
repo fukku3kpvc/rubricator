@@ -1,0 +1,28 @@
+!!!
+%html
+  %head
+    %title Rubricator
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  %body
+    - if notice
+      .alert.alert-primary.alert-dismissible.fade.show{ role: "alert" }
+        = notice
+        %button.close{ type:"button", "data-dismiss":"alert", "aria-label":"Close" }
+          %span{ "aria-hidden":"true" } x
+    - if alert
+      .alert.alert-danger.alert-dismissible.fade.show{ role:"alert" }
+        = alert
+        %button.close{ type:"button", "data-dismiss":"alert", "aria-label":"Close" }
+          %span{ "aria-hidden":"true" } x
+    %nav.navbar.navbar-dark.bg-dark
+      = link_to 'Nodes List', root_path, class: 'navbar-brand'
+      - if user_signed_in?
+        = link_to 'Sign Out', destroy_user_session_path, method: :delete, class: 'navbar-brand'
+      - else
+        = link_to 'Sign In', new_user_session_path, class: 'navbar-brand'
+    .container
+      = yield
